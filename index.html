@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>هول إن للغولف</title>
+    <meta name="description" content="وصف الموقع">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تحسينات CSS */
+        * {
+            font-size: 18px; /* تكبير حجم الخط لجميع العناصر */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6; /* زيادة تباعد الأسطر لتحسين القراءة */
+        }
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 28px; /* تكبير حجم الخط للشعار */
+            color: #007BFF;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 20px; /* تكبير حجم الخط لقوائم التنقل */
+            cursor: pointer;
+        }
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-width: 160px;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+        }
+        .dropdown-menu li {
+            padding: 10px;
+        }
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px;
+            font-size: 18px; /* تكبير حجم الخط للقوائم المنسدلة */
+        }
+        .dropdown-menu li a:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px; /* تكبير حجم الخط للأزرار */
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            background-image: url('image/3.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 3.5rem; /* تكبير حجم الخط للعنوان الرئيسي */
+        }
+        .hero p {
+            font-size: 1.5rem; /* تكبير حجم الخط للنص تحت العنوان */
+        }
+        .cta-buttons a {
+            margin: 10px;
+            font-size: 18px; /* تكبير حجم الخط لأزرار CTA */
+        }
+        .facilities-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .facility-card {
+            width: 300px;
+            text-align: center;
+        }
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card-image:hover .card-overlay {
+            opacity: 1;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+        .footer-section h4 {
+            font-size: 24px; /* تكبير حجم الخط لعناوين الفوتر */
+        }
+        .footer-section p, .footer-section ul {
+            font-size: 18px; /* تكبير حجم الخط لنصوص الفوتر */
+        }
+        .social-links a {
+            margin: 0 10px;
+            font-size: 24px; /* تكبير حجم الخط لروابط التواصل الاجتماعي */
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none; /* مخفي في البداية */
+        }
+        /* إضافة أنماط لنموذج الحجز */
+        .booking-section {
+            padding: 40px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .booking-form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 18px; /* تكبير حجم الخط لتسميات النموذج */
+        }
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px; /* تكبير حجم الخط لحقول الإدخال */
+        }
+        .booking-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px; /* تكبير حجم الخط لأزرار النموذج */
+        }
+        .booking-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <div class="logo">هول إن للغولف</div>
+        <ul id="main-menu">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#about">عن النادي</a></li>
+            <li class="dropdown">
+                <a href="#" onclick="toggleDropdown(this)" aria-expanded="false">المرافق</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#club">النادي</a></li>
+                    <li><a href="#hotel">الفندق</a></li>
+                    <li><a href="#restaurant">المطعم</a></li>
+                    <li><a href="#shop">المتجر</a></li>
+                    <li><a href="#activities">أنشطة أخرى</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" onclick="toggleDropdown(this)" aria-expanded="false">العروض</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#five">حزم خماسية</a></li>
+                    <li><a href="#triple">حزم ثلاثية</a></li>
+                    <li><a href="#special">حزم خاصة</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact">التواصل</a></li>
+            <li><a href="#booking" class="btn-primary">الحجز الآن</a></li>
+        </ul>
+    </nav>
+    <!-- القسم الرئيسي مع صورة الخلفية -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>استمتع بتجربة غولف استثنائية</h1>
+            <p>نادي عالمي بمرافق فاخرة ومساحات خضراء خلابة</p>
+            <div class="cta-buttons">
+                <a href="#facilities" class="btn btn-primary">استكشف المرافق</a>
+                <a href="#booking" class="btn btn-outline">جولة افتراضية</a>
+            </div>
+        </div>
+    </section>
+    <!-- قسم عن النادي -->
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>عن النادي</h2>
+        </div>
+        <div class="about-content">
+            <p>
+                الجولف هي رياضة يستخدم فيها اللاعبون الهراوات لضرب كرة صغيرة في سلسلة من الثقوب في الملعب. الهدف من اللعبة هو إكمال كل حفرة بأقل عدد ممكن من السكتات الدماغية. عادة ما تكون ملاعب الجولف في الهواء الطلق ويمكن أن تتكون من 9 أو 18 حفرة، ولكل حفرة أرض الإنطلاق، وممر، والأخضر مع عصا العلم وكوب.
+                <span style="color: blue;">اجعل هاذا المكان بلون الازرق</span>
+            </p>
+        </div>
+    </section>
+    <!-- قسم المرافق -->
+    <section id="facilities" class="facilities">
+        <div class="section-title">
+            <h2>مرافق النادي</h2>
+        </div>
+        <div class="facilities-grid">
+            <!-- بطاقة الملعب -->
+            <div class="facility-card">
+                <div class="card-image" style="background-image: url('image/200380.jpg');">
+                    <div class="card-overlay">
+                        <h3>الملعب</h3>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>ملعب غولف عالمي بتصميم احترافي</p>
+                    <a href="#course" class="btn btn-outline">تفاصيل</a>
+                </div>
+            </div>
+            <!-- بطاقة النادي -->
+            <div class="facility-card">
+                <div class="card-image" style="background-image: url('image/3.jpg');">
+                    <div class="card-overlay">
+                        <h3>النادي الرئيسي</h3>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>صالة فاخرة بتصميم عصري وخدمات مميزة</p>
+                    <a href="#club" class="btn btn-outline">تفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- قسم العروض -->
+    <section id="offers" class="offers">
+        <div class="section-title">
+            <h2>العروض</h2>
+        </div>
+        <div class="offers-content">
+            <!-- الحزمة الخماسية -->
+            <h3>حزم خماسية</h3>
+            <p>
+                الحزمة الخماسية تتكون من 5 أشخاص أو أكثر، وتشمل:
+                <ul>
+                    <li>وجبات في المطعم الفاخر.</li>
+                    <li>إقامة في الفندق لمدة ليلتين.</li>
+                    <li>استخدام ملعب الغولف العالمي.</li>
+                    <li>الدخول إلى المتجر والحصول على خصم خاص.</li>
+                </ul>
+                <strong>استفسر أكثر عن العرض:</strong> <a href="#contact" class="btn btn-primary">اتصل بنا</a>
+            </p>
+
+            <!-- الحزمة الثلاثية -->
+            <h3>حزم ثلاثية</h3>
+            <p>
+                الحزمة الثلاثية تتكون من 3 أشخاص، وتشمل:
+                <ul>
+                    <li>وجبات في المطعم الفاخر.</li>
+                    <li>إقامة في الفندق لمدة ليلة واحدة.</li>
+                    <li>استخدام ملعب الغولف العالمي.</li>
+                    <li>الدخول إلى المتجر والحصول على خصم خاص.</li>
+                </ul>
+                <strong>استفسر أكثر عن العرض:</strong> <a href="#contact" class="btn btn-primary">اتصل بنا</a>
+            </p>
+
+            <!-- الحزمة الخاصة (VIP) -->
+            <h3>حزمة خاصة (VIP)</h3>
+            <p>
+                الحزمة الخاصة (VIP) هي تجربة فاخرة تشمل:
+                <ul>
+                    <li>وجبات في المطعم الفاخر مع قائمة طعام مخصصة.</li>
+                    <li>إقامة في سويت فاخر بالفندق لمدة 3 ليالي.</li>
+                    <li>استخدام ملعب الغولف العالمي مع مدرب خاص.</li>
+                    <li>الدخول إلى المتجر والحصول على خصم خاص بنسبة 20%.</li>
+                    <li>خدمة نقل خاصة من وإلى المطار.</li>
+                    <li>تسهيلات خاصة مثل سبا ومرافق ترفيهية.</li>
+                </ul>
+                <strong>استفسر أكثر عن العرض:</strong> <a href="#contact" class="btn btn-primary">اتصل بنا</a>
+            </p>
+        </div>
+    </section>
+    <!-- قسم التواصل -->
+    <section id="contact" class="contact-section">
+        <div class="contact-info">
+            <h2>معلومات الاتصال</h2>
+            <p><strong>العنوان:</strong> مدينة الرياض، المملكة العربية السعودية</p>
+            <p><strong>الهاتف:</strong> +966 123 456 789</p>
+            <p><strong>البريد الإلكتروني:</strong> info@holingolf.com</p>
+        </div>
+        <!-- نموذج التواصل -->
+        <div class="contact-form">
+            <h2>راسلنا</h2>
+            <form action="#" method="post">
+                <input type="text" placeholder="اسمك" required>
+                <input type="email" placeholder="بريدك الإلكتروني" required>
+                <textarea rows="5" placeholder="رسالتك"></textarea>
+                <button type="submit">إرسال</button>
+            </form>
+        </div>
+    </section>
+    <!-- قسم الحجز -->
+    <section id="booking" class="booking-section">
+        <div class="section-title">
+            <h2>نموذج تسجيل الحجز</h2>
+        </div>
+        <div class="booking-form">
+            <form action="#" method="post">
+                <label for="username">اسم المستخدم:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="date">تاريخ الحجز:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="offer">اختر العرض:</label>
+                <select id="offer" name="offer" required>
+                    <option value="">اختر عرضاً</option>
+                    <option value="five">حزم خماسية</option>
+                    <option value="triple">حزم ثلاثية</option>
+                    <option value="special">حزم خاصة</option>
+                </select>
+
+                <label for="people">عدد الأشخاص:</label>
+                <input type="number" id="people" name="people" min="1" required>
+
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="notes">ملاحظات:</label>
+                <textarea id="notes" name="notes" placeholder="أدخل ملاحظات هنا إن وجدت"></textarea>
+
+                <button type="submit">تسجيل الحجز</button>
+            </form>
+        </div>
+    </section>
+    <!-- القسم السفلي -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>اتصل بنا</h4>
+                <p>العنوان: مدينة العقبة الأردن</p>
+                <p>الهاتف: +962 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#about">عن النادي</a></li>
+                    <li><a href="#offers">العروض</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>تابعنا</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-snapchat"></i></a>
+                    <a href="#"><i class="fab fa-TikTok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer
