@@ -1,0 +1,253 @@
+:root {
+    --primary-color: #FFFFFF; /* النص باللون الأبيض */
+    --secondary-color: #006400; /* الأخضر الغامق - رمز للجولف */
+    --accent-color: #FFD700; /* اللون الذهبي للعناصر الجذابة */
+    --light-bg: #e8f5e9; /* خلفية فاتحة للمحتوى */
+    --dark-bg: #0047AB; /* خلفية زرقاء داكنة للعناصر الثانوية */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* ظلال عامة */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+    transition: all 0.3s ease; /* تحريك عام لجميع العناصر */
+}
+
+body {
+    line-height: 1.8; /* زيادة تباعد الأسطر لتحسين القراءة */
+    color: var(--primary-color);
+    background-color: var(--secondary-color); /* خلفية صفحة بالأخضر الغامق */
+    overflow-x: hidden; /* منع الظهور الأفقي */
+}
+
+/* Navigation Modern Style */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--light-bg); /* خلفية شريط التنقل بلون فاتح */
+    backdrop-filter: blur(10px);
+    padding: 1rem 5%;
+    box-shadow: 0 4px 20px var(--shadow-color); /* ظل أكثر عمقًا */
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.5rem; /* تكبير حجم الخط للشعار */
+    font-weight: 800;
+    color: var(--secondary-color); /* شعار بالأخضر الغامق */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* ظل للنص */
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    color: var(--secondary-color); /* روابط بالأخضر الغامق */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    position: relative;
+    font-weight: 600;
+    font-size: 1.2rem; /* تكبير حجم الخط للروابط */
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color); /* خط تحت الروابط باللون الذهبي */
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--light-bg); /* خلفية القوائم المنسدلة */
+    min-width: 160px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    z-index: 1;
+    text-align: right;
+    border-radius: 8px;
+    padding: 10px 0;
+}
+
+.dropdown-menu li {
+    padding: 8px 16px;
+    list-style: none;
+}
+
+.dropdown-menu a {
+    color: var(--secondary-color); /* نصوص القائمة بالأخضر الغامق */
+    text-decoration: none;
+    display: block;
+    font-size: 1.1rem; /* تكبير حجم الخط للقوائم المنسدلة */
+    transition: 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--accent-color); /* خلفية ذهبية عند التحويم */
+    color: var(--primary-color); /* نص أبيض عند التحويم */
+    border-radius: 4px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(45deg, rgba(0, 100, 0, 0.9), rgba(0, 100, 0, 0.9)), 
+                url('images/golf-course.jpg') center/cover fixed; /* صورة خلفية للجولف */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--primary-color);
+    padding-top: 80px;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 100, 0, 0.5); /* تعتيم الخلفية */
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 4rem; /* تكبير حجم الخط للعنوان الرئيسي */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.5rem; /* تكبير حجم الخط للنص تحت العنوان */
+    margin: 1rem 0;
+    opacity: 0.9;
+}
+
+.hero button {
+    background: var(--accent-color); /* زر باللون الذهبي */
+    color: var(--secondary-color); /* نص بالأخضر الغامق */
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem; /* تكبير حجم الخط للأزرار */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Activity Cards */
+.activity-card {
+    background: var(--light-bg); /* خلفية البطاقات باللون الفاتح */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 15px;
+}
+
+.activity-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.activity-card h3 {
+    color: var(--accent-color); /* عنوان البطاقة باللون الذهبي */
+    margin: 15px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.activity-card p {
+    color: #333; /* نصوص البطاقة بلون داكن */
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--secondary-color); /* خلفية الفوتر بالأخضر الغامق */
+    color: var(--primary-color);
+    padding: 4rem 1rem;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: center;
+}
+
+.footer-section h4 {
+    color: var(--accent-color); /* عناوين الفوتر باللون الذهبي */
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+.social-links a {
+    color: var(--primary-color); /* رموز التواصل الاجتماعي باللون الأبيض */
+    font-size: 2rem;
+    margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2);
+    color: var(--accent-color); /* يتغير لون الرموز عند التحويم */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .activity-card {
+        margin: 10px;
+    }
+}
